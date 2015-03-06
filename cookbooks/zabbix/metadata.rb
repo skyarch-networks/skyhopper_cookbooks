@@ -1,0 +1,26 @@
+name             "zabbix"
+maintainer       "Nacer Laradji"
+maintainer_email "nacer.laradji@gmail.com"
+license          "Apache 2.0"
+description      "Installs/Configures Zabbix Agent/Server"
+long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
+version          "0.0.42"
+
+#supports "ubuntu", ">= 10.04"
+#supports "debian", ">= 6.0"
+#supports "redhat", ">= 5.0"
+#supports "centos", ">= 5.0"
+#supports "oracle", ">= 5.0"
+#supports "windows"
+supports 'amazon', '>= 2013.09'
+
+recommends "apache24" ,">= 0.1.1"
+recommends "database", ">= 1.3.0"
+recommends "mysql", ">= 1.3.0"
+recommends "ufw",  ">= 0.6.1"
+recommends "postgresql"
+recommends "php-fpm"
+recommends "nginx", ">= 1.0.0"
+recommends "ark"
+recommends "yum-epel"
+recommends "chocolatey"

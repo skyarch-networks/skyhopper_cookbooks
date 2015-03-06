@@ -1,0 +1,30 @@
+# ============================
+#       User settings
+# ============================
+
+[hyclops]
+# listen_address = *          # listen on all network interface
+# listen_address = 127.0.0.1  # listen on specific network interface
+listen_address = <%= node.hyclops.server %>
+listen_port = <%= node.hyclops.port %>
+
+[zabbix]
+zabbix_server = <%= node['zabbix']['server']['host'] %>
+zabbix_port = <%= node['zabbix']['server']['port']%>
+frontend_url = <%= node.zabbix.frontend_url %>
+zabbix_user = <%= node['zabbix']['web']['login'] %>
+zabbix_password = <%= node['zabbix']['web']['password'] %>
+zabbix_sender = <%= node['zabbix']['sender']['path'] %>
+
+[ipmi]
+ipmitool = <%= `which ipmitool`.chomp %>
+
+[logging]
+log_level = <%= node.hyclops.log_level %>
+log_file = <%= node.hyclops.log_file %>
+
+[environments]
+# http_proxy = http://proxy.example.com:8080/
+# https_proxy = http://proxy.example.com:8080/
+# no_proxy = "localhost,127.0.0.1"
+

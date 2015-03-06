@@ -1,0 +1,25 @@
+<?php
+// Zabbix GUI configuration file
+global $DB;
+
+<% if node['zabbix']['database']['install_method'] == 'rds_mysql' %>
+$DB['TYPE']     = 'MYSQL';
+<% else %>
+$DB['TYPE']     = '<%= node['zabbix']['database']['install_method'].upcase %>';
+<% end %>
+
+$DB['SERVER']   = '<%= node['zabbix']['database']['dbhost'] %>';
+$DB['PORT']     = '<%= node['zabbix']['database']['dbport'] %>';
+$DB['DATABASE'] = '<%= node['zabbix']['database']['dbname'] %>';
+$DB['USER']     = '<%= node['zabbix']['database']['dbuser'] %>';
+$DB['PASSWORD'] = '<%= node['zabbix']['database']['dbpassword'] %>';
+
+// SCHEMA is relevant only for IBM_DB2 database
+$DB['SCHEMA'] = '';
+
+$ZBX_SERVER      = '<%= node['zabbix']['server']['host'] %>';
+$ZBX_SERVER_PORT = '<%= node['zabbix']['server']['port'] %>';
+$ZBX_SERVER_NAME = '';
+
+$IMAGE_FORMAT_DEFAULT = IMAGE_FORMAT_PNG;
+?>
