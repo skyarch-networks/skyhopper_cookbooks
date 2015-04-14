@@ -7,7 +7,7 @@ default_attributes 'zabbix' => {
     'servers' => ['to.be.set.public.dns.with.eip'],
     'servers_active' => ['to.be.set.public.dns.with.eip'],
     'install_method' => 'package',
-    'version' => '2.2.2',
+    'version' => '2.2.9',
     'service_name' => 'zabbix-agent', 
     'include_dir' => '/etc/zabbix/zabbix_agentd.d'
   }

@@ -3,7 +3,7 @@ description 'install zabbix server'
 default_attributes 'zabbix' => {
   'server'    => {
     'install_method'      => 'package',
-    'version'             => '2.2.2',
+    'version'             => '2.2.9',
   },
   'agent'     => {
     'servers'             => ['127.0.0.1'],
@@ -21,7 +21,7 @@ default_attributes 'zabbix' => {
     'lang'                => 'ja_JP',
   },
   'sender'    => {
-    'version'             => '2.2.2',
+    'version'             => '2.2.9',
   },
   'src_dir'   => '/usr/share/doc/'
 },
