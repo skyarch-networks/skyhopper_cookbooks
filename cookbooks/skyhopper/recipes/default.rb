@@ -12,6 +12,10 @@ package 'ruby22' do
   action :install
 end
 
+gem_package 'bundler' do
+  action :install
+end
+
 %w[nodejs npm].each do |p|
   yum_package p do
     action :install
