@@ -1,5 +1,6 @@
-
-# TODO: amazon linux 以外
+if node[:platform] != 'amazon'
+  raise "#{node[:platform]} not supported."
+end
 
 attr = node['skyhopper']
 
@@ -7,11 +8,7 @@ package 'ruby20' do
   action :remove
 end
 
-package 'ruby21' do
-  action :install
-end
-
-gem_package 'bundler' do
+package 'ruby22' do
   action :install
 end
 
@@ -31,7 +28,7 @@ execute 'yum groupinstall devtool, devlibs' do
   command "sudo yum -y groupinstall 'Development tools' 'Development Libraries'"
 end
 
-%w[ruby21-devel sqlite-devel zlib-devel readline-devel openssl-devel libxml2-devel libxslt-devel mysql-devel mysql].each do |p|
+%w[ruby22-devel sqlite-devel zlib-devel readline-devel openssl-devel libxml2-devel libxslt-devel mysql-devel mysql].each do |p|
   package p do
     action :install
   end
@@ -70,54 +67,6 @@ package 'nginx' do
   notifies :enable, 'service[nginx]'
 end
 
-# execute 'mysql create user' do
-#   # XXX: 冪等じゃない. デバッグ時は drop user skyhopper_prod@localhost; すると通ります
-#   command <<-EOC
-# cat <<CMD | mysql -uroot
-# SET storage_engine=INNODB;
-# CREATE USER '#{attr['db']['user']}'@'localhost' IDENTIFIED BY '#{attr['db']['password']}';
-# CREATE DATABASE IF NOT EXISTS \\`#{attr['db']['name']}\\` DEFAULT CHARACTER SET \\`utf8\\` COLLATE \\`utf8_unicode_ci\\`;
-# GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER, LOCK TABLES ON \\`#{attr['db']['name']}\\`.* TO '#{attr['db']['user']}'@'localhost';
-# quit
-# CMD
-#   EOC
-# end
-
-git attr['root_dir'] do
-  repository attr['repo_url']
-  action :sync
-end
-
-# execute 'bundle install' do
-#   command <<-EOC
-# cd #{attr['root_dir']}
-# bundle install --path vendor/bundle
-#   EOC
-# end
-
-# execute 'bower install' do
-#   command <<-EOC
-# cd #{attr['root_dir']}
-# bower install --allow-root
-#   EOC
-# end
-
-# template 'database.yml' do
-#   source 'database.yml.erb'
-#   path File.join(attr['root_dir'], 'config', 'database.yml')
-# end
-
-# execute 'setup database' do
-#   # XXX: 冪等じゃない(たぶん)
-#   command <<-EOC
-#   cd #{attr['root_dir']}
-#   bundle exec rake db:create
-#   bundle exec rake db:migrate
-#   bundle exec rake db:seed
-#   EOC
-#   environment "RAILS_ENV" => 'production'
-# end
-
 template 'nginx skyhopper.conf' do
   source 'nginx_skyhopper.conf.erb'
   path "/etc/nginx/conf.d/skyhopper.conf"
@@ -125,11 +74,7 @@ template 'nginx skyhopper.conf' do
   notifies :restart, 'service[nginx]'
 end
 
-# execute 'skyhopper' do
-#   action :nothing
-#   command <<-EOC
-#   #{File.join(attr['root_dir'], 'scripts', 'skyhopper_daemon.sh')} start
-#   EOC
-#   notifies :run, 'execute[skyhopper]'
-#   # XXX: 冪等じゃない(たぶん)
-# end
+git attr['root_dir'] do
+  repository attr['repo_url']
+  action :sync
+end
