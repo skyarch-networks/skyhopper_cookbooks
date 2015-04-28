@@ -40,4 +40,5 @@ run_list(
   'recipe[zabbix::get]',
   'recipe[zabbix::init_sql_cfg]',
   "recipe[zabbix::database]",
+  "recipe[tz-japan]",
 )
