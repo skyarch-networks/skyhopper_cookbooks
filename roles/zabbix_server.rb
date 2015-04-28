@@ -36,7 +36,8 @@ run_list(
   #"recipe[mysql::client]",
   'role[zabbix_agent]',
   'recipe[zabbix::server]',
+  'recipe[zabbix::lang_ja]',
   'recipe[zabbix::get]',
   'recipe[zabbix::init_sql_cfg]',
-  "recipe[zabbix::database]"
+  "recipe[zabbix::database]",
 )

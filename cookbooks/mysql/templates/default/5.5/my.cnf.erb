@@ -5,6 +5,9 @@ port                           = <%= @port %>
 <% if @socket_file %>
 socket                         = <%= @socket_file %>
 <% end %>
+<% if node['mysql']['server']['default-character-set'] %>
+default-character-set          = <%= node['mysql']['server']['default-character-set'] %>
+<% end %>
 
 [mysqld_safe]
 socket                         = <%= @socket_file %>
@@ -30,6 +33,10 @@ tmpdir                         = /tmp
 <% end %>
 <% if @lc_messages_dir %>
 lc-messages-dir                = <%= @lc_messages_dir %>
+<% end %>
+<% if node['mysql']['server']['character-set-server'] %>
+character-set-server           = <%= node['mysql']['server']['character-set-server'] %>
+skip-character-set-client-handshake
 <% end %>
 
 [mysql]
