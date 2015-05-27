@@ -81,4 +81,6 @@ end
 git attr['root_dir'] do
   repository attr['repo_url']
   action :sync
+  user 'ec2-user'
+  group 'ec2-user'
 end
