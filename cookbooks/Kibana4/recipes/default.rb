@@ -39,3 +39,7 @@ script "add Kibana to service" do
     chkconfig --add kibana
   EOC
 end
+
+service "kibana" do
+  action :start
+end

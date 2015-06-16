@@ -15,3 +15,7 @@ end
 yum_package "td-agent" do
   action :install
 end
+
+service "td-agent" do
+  action :start
+end
