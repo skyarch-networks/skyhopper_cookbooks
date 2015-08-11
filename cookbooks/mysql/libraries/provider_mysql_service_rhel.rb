@@ -49,7 +49,7 @@ class Chef
               package_name = 'mysql-community-server'
               service_name = 'mysqld'
             end
-          when '2014'
+          when '2014', '2015'
             case new_resource.version
             when '5.1'
               base_dir = ''

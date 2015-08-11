@@ -10,9 +10,7 @@ when 'rhel'
   case node['platform']
   when 'amazon'
     case node['platform_version'].to_i
-    when 2013
-      default['yum']['mysql55-community']['baseurl'] = 'http://repo.mysql.com/yum/mysql-5.5-community/el/6/$basearch/'
-    when 2014
+    when 2013, 2014, 2015
       default['yum']['mysql55-community']['baseurl'] = 'http://repo.mysql.com/yum/mysql-5.5-community/el/6/$basearch/'
     end
   when 'redhat'

@@ -157,7 +157,25 @@ module Opscode
                 'package_name' => 'mysql-server',
                 'service_name' => 'mysqld'
               }
-            }
+            },
+            # Same as 2014.09
+            '2015.03' => {
+              'default_version' => '5.5',
+              '5.1' => {
+                'package_name' => 'mysql51-server',
+                'service_name' => 'mysqld'
+              },
+              '5.5' => {
+                # 'package_name' => 'mysql-community-server',
+                'package_name' => 'mysql-server',
+                'service_name' => 'mysqld'
+              },
+              '5.6' => {
+                # 'package_name' => 'mysql-community-server',
+                'package_name' => 'mysql-server',
+                'service_name' => 'mysqld'
+              }
+            },
           },
           'fedora' => {
             'default_data_dir' => '/var/lib/mysql',
