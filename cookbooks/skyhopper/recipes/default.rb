@@ -24,16 +24,16 @@ end
 end
 
 execute 'npm update -g npm' do
-  command 'sudo npm update -g npm'
+  command 'npm update -g npm'
 end
 
 execute 'npm install -g bower' do
-  command "sudo npm install bower --global"
+  command "npm install bower --global"
   not_if {system('which bower > /dev/null 2>&1')}
 end
 
 execute 'yum groupinstall devtool, devlibs' do
-  command "sudo yum -y groupinstall 'Development tools' 'Development Libraries'"
+  command "yum -y groupinstall 'Development tools' 'Development Libraries'"
 end
 
 %w[ruby22-devel sqlite-devel zlib-devel readline-devel openssl-devel libxml2-devel libxslt-devel mysql-devel mysql].each do |p|
