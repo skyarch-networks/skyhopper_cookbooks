@@ -23,10 +23,6 @@ end
   end
 end
 
-execute 'npm update -g npm' do
-  command 'npm update -g npm'
-end
-
 execute 'npm install -g bower' do
   command "npm install bower --global"
   not_if {system('which bower > /dev/null 2>&1')}
