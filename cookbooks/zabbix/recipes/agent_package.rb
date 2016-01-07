@@ -1,4 +1,4 @@
-raise "Do not support #{node[:platform]}" unless %w[amazon redhad].include? node[:platform]
+raise "Do not support #{node[:platform]}" unless %w[amazon redhat].include? node[:platform]
 
 include_recipe "zabbix::agent_common"
 include_recipe 'zabbix::package_repo'
