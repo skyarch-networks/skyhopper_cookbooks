@@ -2,6 +2,10 @@ server {
         listen 80;
         server_name <%= node['skyhopper']['server_name'] %>;
 
+        location ~ ^/(assets|fonts) {
+          root <%= node['skyhopper']['root_dir'] %>/public;
+        }
+
         location / {
             proxy_set_header    X-Real-IP   $remote_addr;
             proxy_set_header    Host        $http_host;
