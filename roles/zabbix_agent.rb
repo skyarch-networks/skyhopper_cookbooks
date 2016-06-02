@@ -9,7 +9,11 @@ default_attributes 'zabbix' => {
     'install_method' => 'package',
     'version' => '2.2.9',
     'service_name' => 'zabbix-agent', 
-    'include_dir' => '/etc/zabbix/zabbix_agentd.d'
+    'include_dir' => '/etc/zabbix/zabbix_agentd.d',
+    'log_file' => '/var/log/zabbix/zabbix_agentd.log' # Zabbix3.0では必須
+  },
+  'package' => {
+    'rpm' => 'http://repo.zabbix.com/zabbix/2.2/rhel/6/x86_64/zabbix-release-2.2-1.el6.noarch.rpm'
   }
 }
 

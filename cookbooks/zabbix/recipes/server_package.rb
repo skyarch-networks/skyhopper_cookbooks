@@ -20,6 +20,15 @@ packages.each do |pkg|
   end
 end
 
+# install php54 and modules
+if node['zabbix']['server']['version'] =~ /\A3\.0\./
+  %w{ php54 php54-mysql php54-gd php54-bcmath php54-mbstring php54-xml }.each do |pack|
+    package pack do
+      action :install
+    end
+  end
+end
+
 # install zabbix server conf
 template "#{node['zabbix']['etc_dir']}/zabbix_server.conf" do
   source "zabbix_server.conf.erb"
@@ -37,6 +46,15 @@ template "#{node['zabbix']['etc_dir']}/zabbix_server.conf" do
     :java_pollers       => node['zabbix']['server']['java_pollers']
   )
   notifies :restart, "service[zabbix-server]", :delayed
+end
+
+if node['zabbix']['server']['version'] =~ /\A3\.0\./
+  directory "#{node['zabbix']['etc_dir']}/web" do
+    owner  'root'
+    group  'root'
+    mode   '755'
+    action :create
+  end
 end
 
 # install zabbix.conf.php

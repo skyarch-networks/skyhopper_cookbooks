@@ -80,14 +80,24 @@ def create_new_database
   end
 
   # create zabbix database
-  mysql_database new_resource.dbname do
-    connection root_connection
-    notifies :run, "execute[zabbix_populate_schema]", :immediately
-    notifies :run, "execute[zabbix_populate_image]", :immediately
-    notifies :run, "execute[zabbix_populate_data]", :immediately
-    notifies :create, "mysql_database_user[#{new_resource.username}]", :immediately
-    notifies :grant, "mysql_database_user[#{new_resource.username}]", :immediately
-    notifies :create, "ruby_block[set_updated]", :immediately
+  if node['zabbix']['server']['version'] =~ /\A3\.0\./
+    mysql_database new_resource.dbname do
+      connection root_connection
+      notifies :run, "execute[zabbix_populate_create]", :immediately # Zabbix3.0 only
+      notifies :create, "mysql_database_user[#{new_resource.username}]", :immediately
+      notifies :grant, "mysql_database_user[#{new_resource.username}]", :immediately
+      notifies :create, "ruby_block[set_updated]", :immediately
+    end
+  else
+    mysql_database new_resource.dbname do
+      connection root_connection
+      notifies :run, "execute[zabbix_populate_schema]", :immediately
+      notifies :run, "execute[zabbix_populate_image]", :immediately
+      notifies :run, "execute[zabbix_populate_data]", :immediately
+      notifies :create, "mysql_database_user[#{new_resource.username}]", :immediately
+      notifies :grant, "mysql_database_user[#{new_resource.username}]", :immediately
+      notifies :create, "ruby_block[set_updated]", :immediately
+    end
   end
 
   # populate database
@@ -130,13 +140,22 @@ def create_new_database
       end
     end
 
-  sql_scripts.each do |script_spec|
-    script_name = script_spec.first
-    script_path = script_spec.last
-
-    execute script_name do
-      command "#{sql_command} < #{script_path}"
+  if node['zabbix']['server']['version'] =~ /\A3\.0\./
+    script_path = ::File.join(zabbix_path, "create.sql.gz")
+    
+    execute "zabbix_populate_create" do
+      command "zcat #{script_path} | #{sql_command}"
       action :nothing
+    end
+  else
+    sql_scripts.each do |script_spec|
+      script_name = script_spec.first
+      script_path = script_spec.last
+  
+      execute script_name do
+        command "#{sql_command} < #{script_path}"
+        action :nothing
+      end
     end
   end
 

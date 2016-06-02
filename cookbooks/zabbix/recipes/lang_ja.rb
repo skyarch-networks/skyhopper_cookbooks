@@ -12,6 +12,8 @@ mysql_attrs['default-character-set'] = 'utf8'
   end
 end
 
-template 'defines.inc.php' do
-  path '/usr/share/zabbix/include/defines.inc.php'
+unless node['zabbix']['server']['version'] =~ /\A3\.0\./
+  template 'defines.inc.php' do
+    path '/usr/share/zabbix/include/defines.inc.php'
+  end
 end

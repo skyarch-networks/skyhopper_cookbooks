@@ -20,14 +20,16 @@ script_path = File::join(
   'data.sql'
 )
 
-template script_path do
-  owner 'root'
-  group 'root'
-  mode  '644'
-  source 'data.sql.erb'
-  pass = node['zabbix']['web']['password'] || 'zabbix'
-  variables(
-    web_passwd: Digest::MD5::hexdigest(pass),
-    web_lang:   node['zabbix']['web']['lang'] || 'en_GB'
-  )
+unless node['zabbix']['server']['version'] =~ /\A3\.0\./
+  template script_path do
+    owner 'root'
+    group 'root'
+    mode  '644'
+    source 'data.sql.erb'
+    pass = node['zabbix']['web']['password'] || 'zabbix'
+    variables(
+      web_passwd: Digest::MD5::hexdigest(pass),
+      web_lang:   node['zabbix']['web']['lang'] || 'en_GB'
+    )
+  end
 end
