@@ -71,6 +71,14 @@ package 'nginx' do
   notifies :enable, 'service[nginx]'
 end
 
+cookbook_file "/etc/nginx/nginx.conf" do
+  source "nginx.conf"
+  mode 0644
+  owner 'root'
+  group 'root'
+  notifies :reload, 'service[nginx]'
+end
+
 template 'nginx skyhopper.conf' do
   source 'nginx_skyhopper.conf.erb'
   path "/etc/nginx/conf.d/skyhopper.conf"
