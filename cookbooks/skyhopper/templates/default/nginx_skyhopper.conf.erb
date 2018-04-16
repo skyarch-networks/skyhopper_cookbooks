@@ -2,7 +2,7 @@ server {
         client_max_body_size 1g;
 
         listen 80;
-        server_name _;
+        server_name skyhopper.local;
 
         location ~ ^/(assets|fonts) {
             root <%= node['skyhopper']['root_dir'] %>/public;
@@ -15,7 +15,7 @@ server {
         }
 
         location /ws {
-            proxy_http_version  1.1;
+            proxy_http_version 1.1;
             proxy_set_header    Upgrade \$http_upgrade;
             proxy_set_header    Connection "upgrade";
             proxy_set_header    Host   \$http_host;
