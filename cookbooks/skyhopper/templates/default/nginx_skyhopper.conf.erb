@@ -9,22 +9,22 @@ server {
         }
 
         location / {
-            proxy_set_header    X-Real-IP   \$remote_addr;
-            proxy_set_header    Host   \$http_host;
+            proxy_set_header    X-Real-IP   $remote_addr;
+            proxy_set_header    Host   $http_host;
             proxy_pass  http://127.0.0.1:3000;
         }
 
         location /ws {
             proxy_http_version 1.1;
-            proxy_set_header    Upgrade \$http_upgrade;
+            proxy_set_header    Upgrade $http_upgrade;
             proxy_set_header    Connection "upgrade";
-            proxy_set_header    Host   \$http_host;
+            proxy_set_header    Host    $http_host;
             proxy_pass  http://127.0.0.1:3210;
         }
 
         location /502.html {
             root <%= node['skyhopper']['root_dir'] %>/public;
-            try_files \$uri 502.html;
+            try_files $uri 502.html;
         }
         error_page 502 /502.html;
 }
