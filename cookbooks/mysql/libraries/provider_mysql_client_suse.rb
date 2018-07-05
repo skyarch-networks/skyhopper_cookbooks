@@ -34,4 +34,4 @@ class Chef
   end
 end
 
-Chef::Platform.set :platform => :suse, :resource => :mysql_client, :provider => Chef::Provider::MysqlClient::Suse
+Chef::Provider::MysqlClient::Suse.provides :mysql_client, platform: "suse"

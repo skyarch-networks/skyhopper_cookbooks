@@ -30,4 +30,4 @@ class Chef
   end
 end
 
-Chef::Platform.set :platform => :smartos, :resource => :mysql_client, :provider => Chef::Provider::MysqlClient::Smartos
+Chef::Provider::MysqlClient::Smartos.provides :mysql_client, platform: "smartos"
