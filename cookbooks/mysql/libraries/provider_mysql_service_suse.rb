@@ -167,4 +167,4 @@ class Chef
   end
 end
 
-Chef::Platform.set :platform => :suse, :resource => :mysql_service, :provider => Chef::Provider::MysqlService::Suse
+Chef::Provider::MysqlService::Suse.provides :mysql_service, platform: "suse"

@@ -148,4 +148,4 @@ class Chef
   end
 end
 
-Chef::Provider::MysqlClient::FreeBSD.provides :mysql_client, platform: "freebsd"
+Chef::Provider::MysqlService::FreeBSD.provides :mysql_service, platform: "freebsd"

@@ -229,4 +229,4 @@ class Chef
   end
 end
 
-Chef::Platform.set :platform => :omnios, :resource => :mysql_service, :provider => Chef::Provider::MysqlService::Omnios
+Chef::Provider::MysqlService::Omnios.provides :mysql_service, platform: "omnios"

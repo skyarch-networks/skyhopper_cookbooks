@@ -313,8 +313,8 @@ class Chef
   end
 end
 
-Chef::Platform.set :platform => :amazon, :resource => :mysql_service, :provider => Chef::Provider::MysqlService::Rhel
-Chef::Platform.set :platform => :redhat, :resource => :mysql_service, :provider => Chef::Provider::MysqlService::Rhel
-Chef::Platform.set :platform => :centos, :resource => :mysql_service, :provider => Chef::Provider::MysqlService::Rhel
-Chef::Platform.set :platform => :oracle, :resource => :mysql_service, :provider => Chef::Provider::MysqlService::Rhel
-Chef::Platform.set :platform => :scientific, :resource => :mysql_service, :provider => Chef::Provider::MysqlService::Rhel
+Chef::Provider::MysqlService::Rhel.provides :mysql_service, platform: "amazon"
+Chef::Provider::MysqlService::Rhel.provides :mysql_service, platform: "redhat"
+Chef::Provider::MysqlService::Rhel.provides :mysql_service, platform: "centos"
+Chef::Provider::MysqlService::Rhel.provides :mysql_service, platform: "oracle"
+Chef::Provider::MysqlService::Rhel.provides :mysql_service, platform: "scientific"

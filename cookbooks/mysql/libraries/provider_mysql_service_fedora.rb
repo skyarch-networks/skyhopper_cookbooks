@@ -154,4 +154,4 @@ class Chef
   end
 end
 
-Chef::Provider::MysqlClient::Fedora.provides :mysql_client, platform: "fedora"
+Chef::Provider::MysqlService::Fedora.provides :mysql_service, platform: "fedora"

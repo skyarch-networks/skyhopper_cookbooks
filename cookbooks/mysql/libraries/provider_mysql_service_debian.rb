@@ -190,4 +190,4 @@ class Chef
   end
 end
 
-Chef::Provider::MysqlClient::Debian.provides :mysql_client, platform: "debian"
+Chef::Provider::MysqlService::Debian.provides :mysql_service, platform: "debian"

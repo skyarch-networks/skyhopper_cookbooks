@@ -213,4 +213,4 @@ class Chef
   end
 end
 
-Chef::Platform.set :platform => :smartos, :resource => :mysql_service, :provider => Chef::Provider::MysqlService::Smartos
+Chef::Provider::MysqlService::Smartos.provides :mysql_service, platform: "smartos"
