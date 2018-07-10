@@ -12,7 +12,7 @@ end
 
 class Chef
   class Provider
-    class ZabbixDatabaseMySql
+    class ZabbixDatabaseMySql < Chef::Provider::LWRPBase
       
       def whyrun_supported? 
         true
