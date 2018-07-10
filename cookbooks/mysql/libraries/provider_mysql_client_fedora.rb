@@ -1,4 +1,4 @@
-require 'chef/provider/lwrp_base'
+require 'chef/provider'
 
 class Chef
   class Provider
