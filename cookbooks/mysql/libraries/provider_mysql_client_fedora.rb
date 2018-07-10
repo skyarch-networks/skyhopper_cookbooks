@@ -35,4 +35,4 @@ class Chef
   end
 end
 
-Chef::Provider::MysqlClient::Fedora.provides :mysql_client, :platform' "fedora"
+Chef::Provider::MysqlClient::Fedora.provides :mysql_client, platform: "fedora"
