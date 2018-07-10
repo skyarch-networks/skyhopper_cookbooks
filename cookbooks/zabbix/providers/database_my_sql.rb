@@ -1,3 +1,9 @@
+provider :my_sql
+
+def provider?
+  true
+end
+
 def whyrun_supported? 
   true
 end

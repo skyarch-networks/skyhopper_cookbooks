@@ -22,7 +22,7 @@ attribute :aws_secret_access_key, :kind_of => String
 attribute :mount_point,           :kind_of => String
 attribute :mount_point_owner,     :kind_of => String, :default => 'root'
 attribute :mount_point_group,     :kind_of => String, :default => 'root'
-attribute :mount_point_mode,      :kind_of => String, :default => 00755
+attribute :mount_point_mode,      :kind_of => String, :default => '00755'
 attribute :disk_count,            :kind_of => Integer
 attribute :disk_size,             :kind_of => Integer
 attribute :level,                 :default => 10

@@ -5,7 +5,7 @@ attr_accessor :exists
 
 def initialize(name, run_context=nil)
   super
-  @provider ||= Chef::Provider::ZabbixDatabaseMySql
+  @provider ||= Chef::Resource.resource_for_node(:database, node)
 end
 
 attribute :dbname, :kind_of => String, :name_attribute => true
