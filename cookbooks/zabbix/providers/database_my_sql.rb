@@ -1,5 +1,15 @@
 require 'chef/provider/lwrp_base'
 
+action :create do
+  if @current_resource.exists
+    Chef::Log.info("Create #{new_resource.dbname} already exists - Nothing to do")
+  else
+    converge_by("Create #{new_resource.dbname}") do
+      create_new_database
+    end
+  end
+end
+
 class Chef
   class Provider
     class ZabbixDatabaseMySql
@@ -39,16 +49,6 @@ class Chef
           db.close unless db.nil?
         end
         exists
-      end
-
-      action :create do
-        if @current_resource.exists
-          Chef::Log.info("Create #{new_resource.dbname} already exists - Nothing to do")
-        else
-          converge_by("Create #{new_resource.dbname}") do
-            create_new_database
-          end
-        end
       end
 
       def create_new_database
