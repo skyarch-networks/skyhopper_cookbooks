@@ -2,7 +2,7 @@ require 'chef/provider'
 
 class Chef
   class Provider
-    class Zabbixdatabase < Chef::Provider::LWRPBase
+    class ZabbixDatabase < Chef::Provider::LWRPBase
       def action_create
       end
     end

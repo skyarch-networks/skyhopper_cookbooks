@@ -164,4 +164,4 @@ class Chef
   end
 end
 
-Chef::Provider::ZabbixDatabase::MySql.provides :zabbix_database_my_sql
+Chef::Provider::ZabbixDatabase::MySql.provides :zabbix_database
