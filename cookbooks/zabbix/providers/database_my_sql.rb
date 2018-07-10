@@ -2,7 +2,7 @@ require 'chef/provider/lwrp_base'
 
 class Chef
   class Provider
-    class DatabaseMySql < Chef::Provider
+    class ZabbixDatabaseMySql
       
       def whyrun_supported? 
         true
@@ -159,3 +159,5 @@ class Chef
     end
   end
 end
+
+Chef::Provider::ZabbixDatabaseMySql.provides :zabbix_database_my_sql
