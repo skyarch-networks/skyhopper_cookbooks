@@ -9,7 +9,6 @@
 #
 timezone = "Japan"
 service "sysklogd"
-service "httpd"
 
 link "/etc/localtime" do
   to "/usr/share/zoneinfo/#{timezone}"
