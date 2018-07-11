@@ -32,6 +32,7 @@ when 'mysql'
   provider = Chef::Provider::ZabbixDatabase::MySql
   Chef::Log.logger.info "hogeee!"
   Chef::Log.logger.info provider
+when 'postgres'
   unless node['postgresql']['password']['postgres']
     node.normal['postgresql']['password']['postgres'] = secure_password
   end
