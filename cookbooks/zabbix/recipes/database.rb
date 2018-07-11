@@ -29,8 +29,10 @@ when 'mysql'
   root_username       = "root"
   root_password       = node['mysql']['server_root_password']
   allowed_user_hosts  = node['zabbix']['database']['allowed_user_hosts']
-  provider = Chef::Provider::ZabbixDatabaseMySql
+  resource = Chef::Resource.resource_for_node(:zabbix_database, node)
+  provider = Chef::ProviderResolver.new(node, find_resource!("zabbix_provider_zabbix_database_my_sql"), :nothing).resolve
   Chef::Log.logger.info "hogeee!"
+  Chef::Log.logger.info resource
   Chef::Log.logger.info provider
   unless node['postgresql']['password']['postgres']
     node.normal['postgresql']['password']['postgres'] = secure_password
