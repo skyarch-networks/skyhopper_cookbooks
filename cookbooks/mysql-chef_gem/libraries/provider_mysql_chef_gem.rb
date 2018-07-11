@@ -18,6 +18,7 @@ class Chef
           end
 
           chef_gem 'mysql' do
+            compile_time true
             action :install
           end
         end
