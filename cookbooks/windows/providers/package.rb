@@ -23,7 +23,6 @@ if RUBY_PLATFORM =~ /mswin|mingw32|windows/
 end
 
 require 'chef/mixin/shell_out'
-require 'chef/mixin/language'
 
 include Chef::Mixin::ShellOut
 include Windows::Helper

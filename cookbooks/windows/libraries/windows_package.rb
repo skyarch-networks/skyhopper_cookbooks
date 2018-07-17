@@ -4,7 +4,7 @@ require 'chef/provider/lwrp_base'
 require 'win32/registry' if RUBY_PLATFORM =~ /mswin|mingw32|windows/
 
 require 'chef/mixin/shell_out'
-require 'chef/mixin/language'
+
 class Chef
   class Provider
     class WindowsCookbookPackage < Chef::Provider::LWRPBase # ~FC058

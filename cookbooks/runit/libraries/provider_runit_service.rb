@@ -28,7 +28,6 @@ require 'chef/resource/template'
 require 'chef/provider/file'
 require 'chef/resource/file'
 require 'chef/mixin/shell_out'
-require 'chef/mixin/language'
 
 class Chef
   class Provider
