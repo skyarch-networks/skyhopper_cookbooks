@@ -30,4 +30,4 @@ class Chef
   end
 end
 
-Chef::Platform.set :platform => :freebsd, :resource => :mysql_client, :provider => Chef::Provider::MysqlClient::FreeBSD
+Chef::Provider::MysqlClient::FreeBSD.provides :mysql_client, platform: "freebsd"
