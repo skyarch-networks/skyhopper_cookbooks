@@ -34,7 +34,7 @@ run_list(
   "recipe[mysql::server]",
   "recipe[database::mysql]",
   #"recipe[mysql::client]",
-  'role[zabbix_agent]',
+  'recipe[zabbix]',
   'recipe[zabbix::server]',
   'recipe[zabbix::lang_ja]',
   'recipe[zabbix::get]',
