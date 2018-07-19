@@ -21,6 +21,5 @@ ruby_block "start service" do
   end
   Array(node['zabbix']['agent']['service_state']).each do |action|
     #notifies action, "service[#{node['zabbix']['agent']['service_name']}]"
-    subscribes :action
   end
 end
