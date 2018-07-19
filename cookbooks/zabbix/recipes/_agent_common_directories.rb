@@ -1,3 +1,5 @@
+include_recipe 'zabbix::agent'
+
 root_dirs = [
   node['zabbix']['agent']['include_dir']
 ]
