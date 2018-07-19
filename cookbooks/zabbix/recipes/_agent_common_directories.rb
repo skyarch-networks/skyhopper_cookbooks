@@ -11,6 +11,8 @@ root_dirs.each do |dir|
       mode "755" 
     end
     recursive true
-    notifies :restart, "service[#{node['zabbix']['agent']['service_name']}]", :immediately
+    #notifies :restart, "service[#{node['zabbix']['agent']['service_name']}]"
+    Chef::Log.logger.info dir
+    subscribes :restart, resources(dir)
   end
 end
