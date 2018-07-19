@@ -13,6 +13,6 @@ root_dirs.each do |dir|
     recursive true
     #notifies :restart, "service[#{node['zabbix']['agent']['service_name']}]"
     Chef::Log.logger.info dir
-    subscribes :restart, resources(dir)
+    subscribes :restart, dir
   end
 end
