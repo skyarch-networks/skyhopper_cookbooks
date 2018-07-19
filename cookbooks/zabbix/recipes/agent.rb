@@ -12,7 +12,7 @@ template "zabbix_agentd.conf" do
     mode "644"
   end
   #notifies :restart, "service[#{node['zabbix']['agent']['service_name']}]"
-  subscribes :restart, template
+  subscribes :restart, "zabbix_agentd.conf"
 end
 
 ruby_block "start service" do
@@ -20,6 +20,7 @@ ruby_block "start service" do
     true
   end
   Array(node['zabbix']['agent']['service_state']).each do |action|
-    notifies action, "service[#{node['zabbix']['agent']['service_name']}]"
+    #notifies action, "service[#{node['zabbix']['agent']['service_name']}]"
+    subscribes :action
   end
 end
