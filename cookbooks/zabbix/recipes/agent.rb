@@ -11,7 +11,8 @@ template "zabbix_agentd.conf" do
     group "root"
     mode "644"
   end
-  notifies :restart, "service[#{node['zabbix']['agent']['service_name']}]"
+  #notifies :restart, "service[#{node['zabbix']['agent']['service_name']}]"
+  subscribes :restart, template
 end
 
 ruby_block "start service" do
